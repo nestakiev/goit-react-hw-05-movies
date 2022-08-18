@@ -23,7 +23,7 @@ const Cast = () => {
                 const {name, character, profile_path, id} = actor;
 
                 return <ListItem key={id}>
-                    <img src={BASE_PHOTO_URL + profile_path} alt={`${name} photo`}/>
+                    <img src={BASE_PHOTO_URL + profile_path} alt={`${name}`}/>
                     <p>{name}</p>
                     <p>Character: {character}</p>
                 </ListItem>
