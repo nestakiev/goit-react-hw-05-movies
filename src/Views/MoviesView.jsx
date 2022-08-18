@@ -19,12 +19,10 @@ const Movies = () => {
     };
 
     return (
-        <Suspense fallback={null}>
         <main>
             <SearchBar onSubmit={submitSearch}/>
             {movies && <MoviesList movies={movies} state={{from: location}}/>}
         </main>
-        </Suspense>
     )
 };
 

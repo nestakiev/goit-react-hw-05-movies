@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types'; 
 
 export const MoviesList = ({movies, link, state}) => {
 
@@ -16,3 +17,9 @@ export const MoviesList = ({movies, link, state}) => {
         </ul>
     )
 };
+
+MoviesList.propTypes = {
+    movies: PropTypes.array.isRequired,
+    link: PropTypes.string,
+    state: PropTypes.object,
+}
