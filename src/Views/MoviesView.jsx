@@ -1,5 +1,5 @@
 import { SearchBar } from "components/SearchBar/SearchBar";
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 import { loadMovieOnSearch } from "services/moviesAPI";
 import { MoviesList } from "components/MoviesList/MoviesList";
 import { useLocation, useSearchParams } from "react-router-dom";
