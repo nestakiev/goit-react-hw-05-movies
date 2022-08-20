@@ -8,11 +8,16 @@ const Movies = () => {
     const [movies, setMovies] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
     const location = useLocation();
+    const searchQuery = searchParams.get('search');
 
     useEffect(() => {
-    if(searchParams.get('search')) {
-        loadMovieOnSearch(searchParams.get('search')).then(setMovies);}
-    }, [searchParams])
+        const fetchMoviesBySearch = async () => {
+            const data = await loadMovieOnSearch(searchQuery).then(response => response).catch(error => console.log(error));
+            setMovies(data)
+        };
+    if(searchQuery) {
+        fetchMoviesBySearch();
+    }}, [searchQuery]);
 
     const submitSearch = (search) => {
         setSearchParams(search !== "" ? {search} : {})

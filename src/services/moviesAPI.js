@@ -57,18 +57,39 @@ export const loadReviewsMovie = async (id) => {
     return reviews;
 }
 
-export const loadMovieOnSearch = async (searchQuery) => {
-    const response = await axios.get(`search/movie/?api_key=${API_KEY}&language=en-US&page=1&query=${searchQuery}`);
-    const movieList = response.data.results.map(a => {
-        const {id, title} = a;
-        return {
-            id,
-            title}
-    })
+// export const loadMovieOnSearch = async (searchQuery) => {
+//     const response = await axios.get(`search/movie/?api_key=${API_KEY}&language=en-US&page=1&query=${searchQuery}`);
+//     const movieList = response.data.results.map(a => {
+//         const {id, title} = a;
+//         return {
+//             id,
+//             title}
+//     })
 
-    if (movieList.length === 0) {
-        alert("We can't found anythings, please repeate your request")
-        return [];
-    }
-    return movieList;
-}
+//     if (movieList.length === 0) {
+//         alert("We can't found anythings, please repeate your request")
+//         return [];
+//     }
+//     return movieList;
+// }
+
+
+export const loadMovieOnSearch = (searchQuery) => {
+    return fetch(`https://api.themoviedb.org/3/search/movie/?api_key=${API_KEY}&language=en-US&page=1&query=${searchQuery}`)
+    .then(response => response.json())
+    .then(data => {
+        const movieList = data.results.map(a => {
+            const {id, title} = a;
+            return {
+                id,
+                title}
+        })
+    
+        if (movieList.length === 0) {
+            alert("We can't found anythings, please repeate your request")
+            return [];
+        }
+
+        return movieList;
+    });
+};
