@@ -75,7 +75,7 @@ export const loadReviewsMovie = async (id) => {
 
 
 export const loadMovieOnSearch = (searchQuery) => {
-    return fetch(`https://api.themoviedb.org/3/search/movie/?api_key=${API_KEY}&language=en-US&page=1&query=${searchQuery}`)
+    return fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&query=${searchQuery}`)
     .then(response => response.json())
     .then(data => {
         const movieList = data.results.map(a => {
