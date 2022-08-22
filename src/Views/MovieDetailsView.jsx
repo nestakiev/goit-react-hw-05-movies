@@ -10,8 +10,10 @@ const BASE_POSTER_URL = 'https://image.tmdb.org/t/p/w300';
 const MovieDetailsView = () => {
 
     const { movieId } = useParams();
-    const location = useLocation();
     const [movieInfo, setMovieInfo] = useState({});
+    const location = useLocation();
+    const backLink = location?.state?.from ?? '/'
+
 
     useEffect (() => {
         loadFullInfoMovie(movieId).then(setMovieInfo);
@@ -21,12 +23,18 @@ const MovieDetailsView = () => {
         return null;
     }
 
+
+
+
     const {vote_average, title, overview, genres, poster_path, release_date} = movieInfo;
     const posterLink = BASE_POSTER_URL + poster_path;
     const userScore = parseInt(vote_average * 10);
     const genresInfo = genres.map(a => a.name).join(" ");
     const releaseYear = release_date.split('-')[0];
-    const backLink = location.state?.from ?? '/';
+
+    console.log(location)
+
+    // console.log(backLink);
 
     return (
         <div>
@@ -48,10 +56,10 @@ const MovieDetailsView = () => {
         <p>Additional information</p>
         <ul>
             <li>
-            <Link to='cast'>Cast</Link>
+            <Link to='cast' state={location.state}>Cast</Link>
             </li>
             <li>
-            <Link to='reviews'>Reviews</Link>
+            <Link to='reviews' state={location.state}>Reviews</Link>
             </li>
         </ul>
         </section>
